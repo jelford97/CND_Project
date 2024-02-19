@@ -1,0 +1,20 @@
+tclean(vis = 'calibrated.ms.split',
+imagename = 'NGC7172.continuum',
+field = '2',
+spw = '16:0~500,16:1547~2047,18',
+specmode = 'mfs',
+imsize = [1024,1024],
+cell = '0.03arcsec',
+niter=3000,
+cycleniter=300,
+weighting='briggs',
+robust=0.5,
+interactive = True)
+
+
+exportfits(imagename='NGC7172.continuum.image',
+fitsimage='NGC7172.continuum.image.LSB.fits',
+overwrite=True) 
+
+For those of you who run analysisUtils, the location will change to
+"/home/soft/casa540/analysis_scripts/". 

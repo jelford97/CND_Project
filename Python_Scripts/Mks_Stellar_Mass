@@ -1,0 +1,17 @@
+import pandas as pd
+import numpy as np
+
+Data=pd.read_csv('/Users/jelford/Documents/PhD_Work/CND_Project/CSV_Files/Python.csv')
+
+M_Star=Data['Stellar Mass (Log)']
+D=Data['Distance (Mpc)']*1e6
+Galaxy=Data['Galaxy']
+mKs=Data['Kband Mag']
+
+abs_mag=mKs-5*np.log10(D)+5
+
+Str_Mass=10.58-0.44*(abs_mag+23)
+
+Data['Kband M*']=Str_Mass
+
+print(Data[['Galaxy','Kband M*']])

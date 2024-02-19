@@ -1,0 +1,22 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+python=pd.read_csv('/Users/jelford/Documents/PhD_Work/CND_Project/CSV_Files/Python.csv')
+plot=pd.read_csv('/Users/jelford/Documents/PhD_Work/CND_Project/CSV_Files/Plot.csv')
+
+SI=python['Spectral Index']
+Synch=plot['Index']
+Dust=plot['Dust PL Index']
+
+plt.scatter(SI,Synch)
+plt.xlabel('Nuclear Spectral Index')
+plt.ylabel('Global Synchrotron Spectral Index')
+plt.savefig('/Users/jelford/Documents/PhD_Work/CND_Project/Plots/GlobalvsNucSI.png',bbox_inches='tight')
+plt.close()
+
+plt.scatter(SI,Dust)
+plt.xlabel('Nuclear Spectral Index')
+plt.ylabel('Global Dust Spectral Index')
+plt.savefig('/Users/jelford/Documents/PhD_Work/CND_Project/Plots/GlobalvsNucSIDust.png',bbox_inches='tight')
+plt.close()

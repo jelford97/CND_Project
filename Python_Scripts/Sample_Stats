@@ -1,0 +1,51 @@
+import pandas as pd
+import numpy as np
+import scipy.stats as stats
+import statistics
+
+TimData=pd.read_csv('/Users/jelford/Documents/PhD_Work/CND_Project/CSV_Files/Tim_data_New.csv')
+Data=pd.read_csv('/Users/jelford/Documents/PhD_Work/CND_Project/CSV_Files/Python.csv')
+Izumi=pd.read_csv('/Users/jelford/Documents/PhD_Work/CND_Project/CSV_Files/IzumiCND.csv')
+GB=pd.read_csv('/Users/jelford/Documents/PhD_Work/CND_Project/CSV_Files/GBData.csv')
+Babyk=pd.read_csv('/Users/jelford/Documents/PhD_Work/CND_Project/CSV_Files/Babyk.csv')
+
+MLbol=TimData['OIII Bolometric Luminosity (erg/s)']
+MeddFrac=TimData['Eddington Fraction']
+TMBH=TimData['log M_BH']
+
+ILbol=Izumi['Lbol']
+IeddFrac=Izumi['Eddington Fraction']
+IMBH=Izumi['MBH']
+
+GBLbol=GB['Lbol']
+GBMBH=GB['MBH']
+GBEddFrac=GB['Eddington Fraction']
+
+MJetPower=Data['Jet Power']
+MJetPower=MJetPower[~np.isnan(MJetPower)]
+BJetPower=Babyk['Jet Power']
+
+
+print(statistics.median(np.log10(MLbol)))
+print(statistics.median(np.log10(MeddFrac)))
+print(statistics.median(TMBH))
+print()
+print(statistics.median(np.log10(ILbol)))
+print(statistics.median(np.log10(IeddFrac)))
+print(statistics.median(IMBH))
+print()
+print(statistics.median(np.log10(GBLbol)))
+print(statistics.median(np.log10(GBEddFrac)))
+print(statistics.median(GBMBH))
+
+print()
+print(statistics.median(np.log10(MJetPower)))
+print(statistics.median(np.log10(BJetPower)))
+
+print(stats.ks_2samp(MLbol,GBLbol))
+print(stats.ks_2samp(MLbol,ILbol))
+print(stats.ks_2samp(TMBH,GBMBH))
+print(stats.ks_2samp(TMBH,IMBH))
+print(stats.ks_2samp(MeddFrac,GBEddFrac))
+print(stats.ks_2samp(MeddFrac,IeddFrac))
+print(stats.ks_2samp(MJetPower,BJetPower))

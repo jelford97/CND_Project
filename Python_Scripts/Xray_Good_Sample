@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.stats as stats
+
+Data_Full=pd.read_csv('/Users/jelford/Documents/PhD_Work/CND_Project/CSV_Files/Python.csv')
+Data=Data_Full[Data_Full['X-ray Good']=='Yes']
+
+Xray=Data['X-ray Luminosity (ergs/s)']
+mass100=Data['Mass 100pc']
+mass75=Data['Mass 75pc']
+mass50=Data['Mass 50pc']
+
+plt.loglog(Xray,mass100,'o')
+plt.show()
+plt.loglog(Xray,mass75,'o')
+plt.show()
+plt.loglog(Xray,mass50,'o')
+plt.show()
+
+Data100=Data[['X-ray Luminosity (ergs/s)','Mass 100pc']]
+Data75=Data[['X-ray Luminosity (ergs/s)','Mass 75pc']]
+Data50=Data[['X-ray Luminosity (ergs/s)','Mass 50pc']]
+
+Data100n=Data100.dropna()
+Data75n=Data75.dropna()
+Data50n=Data50.dropna()
+
+print(stats.spearmanr(Data100n['Mass 100pc'],Data100n['X-ray Luminosity (ergs/s)']))
+print(stats.spearmanr(Data75n['Mass 75pc'],Data75n['X-ray Luminosity (ergs/s)']))
+print(stats.spearmanr(Data50n['Mass 50pc'],Data50n['X-ray Luminosity (ergs/s)']))
